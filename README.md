@@ -1,6 +1,18 @@
-CSE240a Branch Predictor Project
-----------------------------------------------------------------------
+This repository contains code for various branch predictors. These were written as part of a classroom exercise for the CS810: Advanced Computer Architecture course at IIT, Dharwad.
 
+# Branch Predictors
+Some of the branch predictors implemented are:
+- Bimodal Predictor
+- Bimoal Predictor with n-bit saturating counters
+- GAg Predictor
+- GAp Predictor
+
+Note: The various predictors are pushed to the repository as different commits.
+
+# Testing
+The predictors were tested using the setup provided at the [CSE240a Branch Predictor Project](https://cseweb.ucsd.edu/classes/wi12/cse240A-a/proj.html) page.
+
+## Original README
 Instructions:
 
 1) Get a copy of the code from the class webpage
