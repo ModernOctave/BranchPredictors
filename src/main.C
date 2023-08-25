@@ -63,7 +63,7 @@ int main (int argc, char * argv[])
   // printf ("Incorrect\t\t%8d\n", mis_preds);
   // float mis_pred_rate = (float)mis_preds / float(stat_num_insts / 1000);
   // printf ("1000*wrong_cc_predicts/total insts 1000 * %8d / %8d = %7.3f\n", mis_preds, stat_num_insts, mis_pred_rate);
-  printf("Branch Hit Rate: %f\n", (float) (num_branches - mis_preds) / num_branches);
+  printf("Branch Hit Rate: %.1f\n", (float) (num_branches - mis_preds) / num_branches * 100);
 
   if (argc == 2)
     close_trace ();
