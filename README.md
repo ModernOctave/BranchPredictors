@@ -1,4 +1,4 @@
-This repository contains code for various branch predictors. These were written as part of a classroom exercise for the CS810: Advanced Computer Architecture course at IIT, Dharwad.
+This repository contains code for various branch predictors. These were written as part of a classroom exercise for the CS810: Advanced Computer Architecture course at IIT Dharwad.
 
 # Branch Predictors
 Some of the branch predictors implemented are:

@@ -6,29 +6,30 @@
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
 const int NumCounterBits = 2;
-const int NumBits = 14;
-const int NumEntries = 32*512;
+const int NumGHRBits = 4;
+const int NumPCBits = 5;
+const int NumEntries = 512;
 
-bool GHR[NumBits];
+bool GHR[NumGHRBits];
 int PHT[NumEntries];
 
-int regToInt (bool reg[])
+int regToInt (bool GHR[], int pc)
 {
-  int result = 0;
-  for (int i = 0; i < NumBits; i++)
+  int result = pc % (int) pow(2, NumPCBits);
+  for (int i = 0; i < NumGHRBits; i++)
   {
-    result += reg[i] * pow(2, NumBits - 1 - i);
+    result += GHR[i] * pow(2, NumPCBits + i);
   }
   return result;
 }
 
 void addBitToReg (bool reg[], bool bit)
 {
-  for (int i = 0; i < NumBits - 1; i++)
+  for (int i = 0; i < NumGHRBits - 1; i++)
   {
     reg[i] = reg[i + 1];
   }
-  reg[NumBits - 1] = bit;
+  reg[NumGHRBits - 1] = bit;
 }
 
 void init_predictor ()
@@ -41,15 +42,15 @@ void init_predictor ()
 
 bool make_prediction (unsigned int pc)
 {
-  return PHT[regToInt(GHR)] > 1;
+  return PHT[regToInt(GHR, pc)] > 1;
 }
 
 void train_predictor (unsigned int pc, bool outcome)
 {
   if (outcome) {
-    PHT[regToInt(GHR)] = MIN(PHT[regToInt(GHR)] + 1, 3);
+    PHT[regToInt(GHR, pc)] = MIN(PHT[regToInt(GHR, pc)] + 1, 3);
   } else {
-    PHT[regToInt(GHR)] = MAX(PHT[regToInt(GHR)] - 1, 0);
+    PHT[regToInt(GHR, pc)] = MAX(PHT[regToInt(GHR, pc)] - 1, 0);
   }
   addBitToReg(GHR, outcome);
 }
