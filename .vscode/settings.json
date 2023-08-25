@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"*.ypp": "bison",
+		"predictor.C": "cpp",
+		"main.C": "cpp"
+	}
+}
